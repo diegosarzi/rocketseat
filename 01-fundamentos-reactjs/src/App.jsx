@@ -5,6 +5,37 @@ import { Sidebar } from "./components/Sidebar";
 import styles from './App.module.css';
 import './global.css';
 
+const posts = [
+  {
+    id: 1,
+    author: {
+      avatarUrl: 'https://github.com/diegosarzi.png',
+      name: 'Diego Sarzi',
+      role: 'Techlead'
+    },
+    content: [
+      {type: 'paragraph', content: 'Fala Galera!'},
+      {type: 'paragraph', content: 'Acabei de subir mais um projeto no meu portifa. É um projeto que fiz no NLW Return, evento da Rocketseat. O nome do projeto é DoctorCare 🚀'},
+      {type: 'link', content: 'diegosarzi.com.br'}
+    ],
+    publishedAt: new Date('2023-03-30 08:30:00')
+  },
+  {
+    id: 2,
+    author: {
+      avatarUrl: 'https://github.com/rafasarzi.png',
+      name: 'Rafa Sarzi',
+      role: 'Developer'
+    },
+    content: [
+      {type: 'paragraph', content: 'Fala Galera!'},
+      {type: 'paragraph', content: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent eget mattis tortor. Vivamus mollis faucibus metus nec venenatis. Fusce ultricies vestibulum tellus id elementum.'},
+      {type: 'link', content: 'diegosarzi.com.br'}
+    ],
+    publishedAt: new Date('2023-03-23 22:30:00')
+  },
+];
+
 function App() {
 
   return (
@@ -15,15 +46,17 @@ function App() {
       <div className={styles.wrapper}>
         <Sidebar />
         <main>
-          <Post 
-            author="Diego Sarzi"
-            comments="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent eget mattis tortor. Vivamus mollis faucibus metus nec venenatis. Fusce ultricies vestibulum tellus id elementum."
-          />
-
-          <Post 
-            author="João Ferreira"
-            comments="Nullam porttitor sit amet purus et ultricies. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras sed purus aliquam, tristique purus et, malesuada dui. Nulla facilisi."
-          />
+          {posts.map(post => {
+              return (
+                <Post 
+                  key={post.id}
+                  author={post.author}
+                  content={post.content}
+                  publishedAt={post.publishedAt}
+                />
+              )
+            })
+          }
         </main>
       </div>
 
